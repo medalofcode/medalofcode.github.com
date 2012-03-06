@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>И целого мира мало - Программируем для медали</title>
+  <meta name="author" content="Команда разработчиков Medal of Code">
+
+  
+  <meta name="description" content="Как уже было сказано, клиенсткая часть Medal of Code - это NodeJS демон,
+написанный (сюрприз!) на джаваскрипте. Уже в ходе первоначальной
+разработки &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://medalofcode.github.com/blog/2012/03/06/the-world-is-not-enough">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Программируем для медали" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Программируем для медали</a></h1>
+  
+    <h2>Как мы пишем Medal of Code</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:medalofcode.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">И целого мира мало</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-06T10:21:00+02:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Как уже было сказано, клиенсткая часть Medal of Code - это NodeJS демон,
+написанный (сюрприз!) на джаваскрипте. Уже в ходе первоначальной
+разработки, прямо на Хакатоне, выяснилось, что в Джаваскрипте в
+регулярных выражениях <code>.</code> не матчит символ конца строки. Флаг <code>m</code>, то
+есть, multiline, внезапно не помогает - это в Руби флаг <code>m</code> фактически
+означает &#8220;пусть точка матчит символ конца строки&#8221;, а вот Джаваскрипт
+подложил свинью.</p>
+
+<p>Как же с этим быть?</p>
+
+<p>Решение пришло неожиданно и из теории множеств. Оказывается, &#8220;украинцы и
+не украины&#8221; - это больше, чем &#8220;все люди&#8221;. Любой символьный класс плюс
+его инвертирование ловит не все, а <em>все</em> символы, включая и конец
+строки. То есть, при работе с многострочными строками, в Джаваскрипте
+надо писать не <code>.*</code>, а, к примеру, <code>[\d\D]*</code>, или <code>[\s\S]*</code>.</p>
+
+<p>О сколько нам открытий дивных&#8230;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Команда разработчиков Medal of Code</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-06T10:21:00+02:00" pubdate data-updated="true">Mar 6<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://medalofcode.github.com/blog/2012/03/06/the-world-is-not-enough/" data-via="medalofcode" data-counturl="http://medalofcode.github.com/blog/2012/03/06/the-world-is-not-enough/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/02/27/the-beginning/" title="Previous Post: Ты помнишь, как всё начиналось...">&laquo; Ты помнишь, как всё начиналось...</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/06/the-world-is-not-enough/">И целого мира мало</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/27/the-beginning/">Ты помнишь, как всё начиналось...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("medalofcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/medalofcode" class="twitter-follow-button" data-show-count="false">Follow @medalofcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Команда разработчиков Medal of Code -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ты помнишь, как всё начиналось... - Программируем для медали</title>
+  <meta name="author" content="Команда разработчиков Medal of Code">
+
+  
+  <meta name="description" content="А начиналось всё на Донецком Хакатоне. Идея Однажды мы с друзьями решили пойти на
+Донецкий Хакатон. Не просто так - командой, с
+идеей. Обсуждали &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://medalofcode.github.com/blog/2012/02/27/the-beginning">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Программируем для медали" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Программируем для медали</a></h1>
+  
+    <h2>Как мы пишем Medal of Code</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:medalofcode.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ты помнишь, как всё начиналось...</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-27T17:56:00+02:00" pubdate data-updated="true">Feb 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>А начиналось всё на Донецком Хакатоне.</p>
+
+<h2>Идея</h2>
+
+<p>Однажды мы с друзьями решили пойти на
+<a href="http://dou.ua/calendar/1315/">Донецкий Хакатон</a>. Не просто так - командой, с
+идеей. Обсуждали многое - &#8220;Где туалет&#8221;, &#8220;Найди меня&#8221;, вариации на тему
+<a href="http://hackety.com/">Hackety Hack</a>&#8230; Но больше всего таким задротам,
+как мы, пришлась по сердцу идея одного из нас, Максима Цаплина:
+игрофикация процесса разработки.</p>
+
+<p>За основу идеи взяли <a href="http://coderwall.com/">Coderwall</a>. Зачем нужен ещё
+один coderwall? - вероятно хотите спросить вы. Дело в том, что Coderwall
+смотрит на ситуацию снаружи - на ваши действия на
+<a href="https://github.com/">Github</a>. И ещё у него настолько большой временной
+лаг при начислении достижения, что мне кажется, там есть какая-то баба
+Маня, которая каждый понедельник с утра отводит внука в садик, садится и
+начисляет ачивки. Мы же хотим построить нечто иное.  План состоит в том,
+чтобы следить в реальном времени за коммитами, анализировать их и
+обновлять профиль разработчика в реальном времени.</p>
+
+<h2>Подготовка</h2>
+
+<p>Итак, игрофикация. Опыт, уровни, достижения. Архитектурно мы определили
+три модуля: сервер, клиент и веб. Клиент должен навешиваться git hook&#8217;ом
+на события коммита, анализировать их и выдавать обезличенную информацию
+на сервер (чтобы не переживали за свои секретные проекты), сервер -
+начислять опыт и достижения, веб - собственно, показывать всё это.</p>
+
+<p>Стек технологий был выбран достаточно амбициозный - Javascript MVC для
+веба, конкретно - <a href="http://spinejs.com/">SpineJS</a>, демонизированный
+руби-процесс на сервере, с использованием
+<a href="http://rubyeventmachine.com/">EventMachine</a>,
+<a href="https://github.com/igrigorik/em-synchrony">em-synchrony</a> и новомодных
+Ruby 1.9.3 <a href="http://ruby-doc.org/core-1.9.3/Fiber.html">Fibers</a>, связь по
+сокетам через <a href="http://www.zeromq.org/">ZeroMQ</a>, а на клиенте -
+<a href="http://nodejs.org/">NodeJS</a> демон, оповещающий пользователя о новых
+событиях через <a href="http://growl.info/">Growl</a>.</p>
+
+<p>К сожалению, поразбираться со всем этим так и не случилось. Работа,
+семья&#8230;</p>
+
+<p>К началу Хакатона сервер решили объединить с вебом в одно приложение,
+данные принимать через http запросы, никого ни о чём не оповещать - не
+успеем, но чуток асинхронности оставить - использовать
+<a href="https://github.com/defunkt/resque">Resque</a> на сервере
+для обработки сообщений клиента.</p>
+
+<h2>Прибыли!</h2>
+
+<p>На всякую мелочь, вроде ноутбуков, решили не размениваться - MacMini,
+втрое большие HackMini, 22-х дюймовые мониторы, куча проводов&#8230;
+Смотрели на нас волками. Стол шатался и грозился не выдержать. Мы
+держались.</p>
+
+<p>Я и Максим резво создали веб-приложение, добавили в него <a href="https://github.com/intridea/omniauth">omniauth</a> и
+development стратегию, после чего Андрей и Артём решили начать с
+добавления туда авторизации через Гитхаб.</p>
+
+<p>Постепенно вошли в рабочий ритм. Школьники &#8220;Шага&#8221; ушли и интернет стал
+получше, дышать, опять же, стало легче, разбились на три пары и начали
+спокойно и уверенно. Я и Максим были на &#8220;сервере&#8221; и на нашу долю выпало
+прикручивание Resque и обработка и начисление достижений. Resque
+прикрутился замечательно - легко и с полоборота.</p>
+
+<p>Алексей и Роман увлёченно пилили клиента - того самого nodejs-ного
+демона.</p>
+
+<h2>Первые проблемы</h2>
+
+<p>Андрей и Артём, работавшие над вебом, однако, встретили проблемы с
+самого начала. Непонятый Spine активно мешал разработке. На первой же
+летучке было принято решение от него избавиться и начать радостно
+клепать простой и понятный HTML.</p>
+
+<p>Роман и Алексей старательно продолжали пилить клиента - его инсталляцию
+и автозапуск. Сии две ввиду поверхностного знакомства с архитектурой Mac
+OS X тоже сопротивлялись и пришлось городить лес граблей. Основным
+справочником был исходный код проекта <a href="http://pow.cx/">pow.cx</a>.</p>
+
+<h2>&#8220;Десять часов, полёт нормальный&#8221;</h2>
+
+<p>Написали массу кода и начали интегрироваться. Один Роман оставался в
+стороне от бизнес-логики, продолжая втыкать грабли в процесс инсталляции
+и поддержки демона приложения. Всё выглядело безоблачным.</p>
+
+<p><img src="http://i.imgur.com/zzCVe.jpg"></p>
+
+<h2>Вторая часть Марлезонского балета или Отряд не заметил потери бойца</h2>
+
+<p>Одного из нас не стало. Максим не выдержал напряжения бессонной ночи, и
+его силой пришлось отправлять спать. Мы продолжали работу. Уже решены
+задачи деплоя приложения на
+<a href="http://moc.cssum.net/">демонстрационный сервер</a>, включая сборку клиента и его размещение
+в папке для инсталляции, веб стал красивым и полнофункциональным, а Лёша
+вообще начал писать гайд. Ребята, работавшие над вебом, стали увлечённо
+добавлять новые ачивки.</p>
+
+<h2>Юрьев день</h2>
+
+<p>И тут всё развалилось. Ни одно из drop-in решений запуска resque workers
+на production не заработало. Клиент стал вываливаться по малейшему чиху.
+Даже <code>tail -f</code>, и тот стал обрываться на полуслове, что приводило в
+особенный шок и трепет. При этом, наши воспалённые мозги не могли
+сгенерировать ни малейшего верного решения. Мы бились с проблемами в
+лучших традициях незабвенного героя Сервантеса, не пытаясь их обойти.</p>
+
+<h2>Презентация</h2>
+
+<p>Грустно, но наш проект не заработал. В нём была правильная
+последовательность действий, позволявшая продемонстрировать его с
+выгодной точки зрения, но демонстрировавший его Роман воспроизвёл её
+неправильно. Выступавший же Алексей явно нервничал и подать проект в
+правильном свете не смог.</p>
+
+<p>Но пятое из 18 мест осталось за нами.</p>
+
+<h2>Планы</h2>
+
+<p>Этот проект обязательно увидит свет. Мало того, мы вернём в него весь
+амбициозный технологический стек, который мы планировали. И ZeroMQ, и
+EventMachine&#8230; Подпишитесь на этот блог или наш Твиттер, чтобы следить
+за процессом разработки, и мы будем регулярно вещать с полей о том, как
+идёт работа над проектом. Какие мельницы мы рушим и каких тараканов
+давим. Что уже есть и что скоро будет.</p>
+
+<p>Ждите!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Команда разработчиков Medal of Code</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-27T17:56:00+02:00" pubdate data-updated="true">Feb 27<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://medalofcode.github.com/blog/2012/02/27/the-beginning/" data-via="medalofcode" data-counturl="http://medalofcode.github.com/blog/2012/02/27/the-beginning/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/03/06/the-world-is-not-enough/" title="Next Post: И целого мира мало">И целого мира мало &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/03/06/the-world-is-not-enough/">И целого мира мало</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/02/27/the-beginning/">Ты помнишь, как всё начиналось...</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("medalofcode", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/medalofcode" class="twitter-follow-button" data-show-count="false">Follow @medalofcode</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Команда разработчиков Medal of Code -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
